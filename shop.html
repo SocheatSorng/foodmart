@@ -212,39 +212,18 @@
         <div class="order-md-last">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-primary">Your cart</span>
-            <span class="badge bg-primary rounded-pill">3</span>
+            <span class="badge bg-primary rounded-pill cart-count">0</span>
           </h4>
-          <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-              <div>
-                <h6 class="my-0">Growers cider</h6>
-                <small class="text-body-secondary">Brief description</small>
-              </div>
-              <span class="text-body-secondary">$12</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-              <div>
-                <h6 class="my-0">Fresh grapes</h6>
-                <small class="text-body-secondary">Brief description</small>
-              </div>
-              <span class="text-body-secondary">$8</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-              <div>
-                <h6 class="my-0">Heinz tomato ketchup</h6>
-                <small class="text-body-secondary">Brief description</small>
-              </div>
-              <span class="text-body-secondary">$5</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Total (USD)</span>
-              <strong>$20</strong>
-            </li>
+          <ul class="list-group mb-3" id="cart-items">
+            <!-- Cart items will be dynamically inserted here -->
           </ul>
 
-          <button class="w-100 btn btn-primary btn-lg" type="submit">
-            Continue to checkout
-          </button>
+          <div class="d-grid gap-2">
+            <!-- <a href="cart.html" class="btn btn-primary btn-lg">View Cart</a> -->
+            <button class="btn btn-primary btn-lg" id="checkoutBtn">
+              Checkout
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -288,10 +267,10 @@
       </div>
     </div>
 
-    <header>
+    <header class="fixed-top">
       <div class="container-fluid">
         <div class="row py-3 border-bottom">
-          <div class="col-sm-4 col-lg-3 text-center text-sm-start">
+          <div class="col-sm-3">
             <div class="main-logo">
               <a href="index.html">
                 <img src="images/logo.png" alt="logo" class="img-fluid" />
@@ -299,56 +278,62 @@
             </div>
           </div>
 
+          <!-- Centered navigation menu -->
           <div
-            class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block"
+            class="col-sm-6 d-flex justify-content-center align-items-center"
           >
-            <div class="search-bar row bg-light p-2 my-2 rounded-4">
-              <div class="col-md-4 d-none d-md-block">
-                <select class="form-select border-0 bg-transparent">
-                  <option>All Categories</option>
-                  <option>Groceries</option>
-                  <option>Drinks</option>
-                  <option>Chocolates</option>
-                </select>
+            <nav class="main-menu navbar navbar-expand-lg">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div
+                class="offcanvas offcanvas-end"
+                tabindex="-1"
+                id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel"
+              >
+                <div class="offcanvas-header justify-content-center">
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Close"
+                  ></button>
+                </div>
+
+                <div class="offcanvas-body">
+                  <ul
+                    class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0"
+                  >
+                    <li class="nav-item active">
+                      <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="shop.html" class="nav-link">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="blog.html" class="nav-link">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="about.html" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <div class="col-11 col-md-7">
-                <form
-                  id="search-form"
-                  class="text-center"
-                  action="index.html"
-                  method="post"
-                >
-                  <input
-                    type="text"
-                    class="form-control border-0 bg-transparent"
-                    placeholder="Search for more than 20,000 products"
-                  />
-                </form>
-              </div>
-              <div class="col-1">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"
-                  />
-                </svg>
-              </div>
-            </div>
+            </nav>
           </div>
 
-          <div
-            class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end"
-          >
-            <div class="support-box text-end d-none d-xl-block">
-              <span class="fs-6 text-muted">For Support?</span>
-              <h5 class="mb-0">+980-34984089</h5>
-            </div>
-
+          <div class="col-sm-3 d-flex justify-content-end align-items-center">
             <ul class="d-flex justify-content-end list-unstyled m-0">
               <li>
                 <a href="#" class="rounded-circle bg-light p-2 mx-1">
@@ -392,322 +377,69 @@
               </li>
             </ul>
 
-            <div class="cart text-end d-none d-lg-block dropdown">
+            <div class="cart text-end d-none d-lg-block">
               <button
-                class="border-0 bg-transparent d-flex flex-column gap-2 lh-1"
+                class="rounded-circle bg-light p-2 mx-1 border-0 position-relative"
                 type="button"
                 data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasCart"
                 aria-controls="offcanvasCart"
               >
-                <span class="fs-6 text-muted dropdown-toggle">Your Cart</span>
-                <span class="cart-total fs-5 fw-bold">$1290.00</span>
+                <svg width="24" height="24" viewBox="0 0 24 24">
+                  <use xlink:href="#cart"></use>
+                </svg>
+                <span
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary cart-count"
+                >
+                  0
+                  <span class="visually-hidden">items in cart</span>
+                </span>
               </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container-fluid">
-        <div class="row py-3">
-          <div
-            class="d-flex justify-content-center justify-content-sm-between align-items-center"
-          >
-            <nav class="main-menu d-flex navbar navbar-expand-lg">
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar"
-              >
-                <span class="navbar-toggler-icon"></span>
-              </button>
-
-              <div
-                class="offcanvas offcanvas-end"
-                tabindex="-1"
-                id="offcanvasNavbar"
-                aria-labelledby="offcanvasNavbarLabel"
-              >
-                <div class="offcanvas-header justify-content-center">
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="offcanvas"
-                    aria-label="Close"
-                  ></button>
-                </div>
-
-                <div class="offcanvas-body">
-                  <select class="filter-categories border-0 mb-0 me-5">
-                    <option>Shop by Departments</option>
-                    <option>Groceries</option>
-                    <option>Drinks</option>
-                    <option>Chocolates</option>
-                  </select>
-
-                  <ul
-                    class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0"
-                  >
-                    <li class="nav-item active">
-                      <a href="#women" class="nav-link">Women</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a href="#men" class="nav-link">Men</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#kids" class="nav-link">Kids</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#accessories" class="nav-link">Accessories</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a
-                        class="nav-link dropdown-toggle"
-                        role="button"
-                        id="pages"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        >Pages</a
-                      >
-                      <ul class="dropdown-menu" aria-labelledby="pages">
-                        <li>
-                          <a href="about.html" class="dropdown-item"
-                            >About Us
-                            <span class="badge bg-success text-dark ms-2"
-                              >PRO</span
-                            ></a
-                          >
-                        </li>
-                        <li>
-                          <a href="shop.html" class="dropdown-item">Shop</a>
-                        </li>
-                        <li>
-                          <a href="single-product.html" class="dropdown-item"
-                            >Single Product
-                            <span class="badge bg-success text-dark ms-2"
-                              >PRO</span
-                            ></a
-                          >
-                        </li>
-                        <li>
-                          <a href="cart.html" class="dropdown-item"
-                            >Cart
-                            <span class="badge bg-success text-dark ms-2"
-                              >PRO</span
-                            ></a
-                          >
-                        </li>
-                        <li>
-                          <a href="checkout.html" class="dropdown-item"
-                            >Checkout
-                            <span class="badge bg-success text-dark ms-2"
-                              >PRO</span
-                            ></a
-                          >
-                        </li>
-                        <li>
-                          <a href="blog.html" class="dropdown-item"
-                            >Blog
-                            <span class="badge bg-success text-dark ms-2"
-                              >PRO</span
-                            ></a
-                          >
-                        </li>
-                        <li>
-                          <a href="single-post.html" class="dropdown-item"
-                            >Single Post
-                            <span class="badge bg-success text-dark ms-2"
-                              >PRO</span
-                            ></a
-                          >
-                        </li>
-                        <li>
-                          <a href="styles.html" class="dropdown-item"
-                            >Styles
-                            <span class="badge bg-success text-dark ms-2"
-                              >PRO</span
-                            ></a
-                          >
-                        </li>
-                        <li>
-                          <a href="contact.html" class="dropdown-item"
-                            >Contact
-                            <span class="badge bg-success text-dark ms-2"
-                              >PRO</span
-                            ></a
-                          >
-                        </li>
-                        <li>
-                          <a href="thank-you.html" class="dropdown-item"
-                            >Thank You
-                            <span class="badge bg-success text-dark ms-2"
-                              >PRO</span
-                            ></a
-                          >
-                        </li>
-                        <li>
-                          <a href="account.html" class="dropdown-item"
-                            >My Account
-                            <span class="badge bg-success text-dark ms-2"
-                              >PRO</span
-                            ></a
-                          >
-                        </li>
-                        <li>
-                          <a href="404.html" class="dropdown-item"
-                            >404 Error
-                            <span class="badge bg-success text-dark ms-2"
-                              >PRO</span
-                            ></a
-                          >
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#brand" class="nav-link">Brand</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#sale" class="nav-link">Sale</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#blog" class="nav-link">Blog</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </nav>
-            <div class="d-none d-lg-block">
-              <a
-                href="https://templatesjungle.gumroad.com/l/foodmart-bootstrap-html-template"
-                target="_blank"
-                class="nav-link btn-coupon-code"
-              >
-                <img src="images/gift.svg" alt="gift icon" />
-                <strong class="ms-2 text-dark">Get PRO Version</strong>
-              </a>
             </div>
           </div>
         </div>
       </div>
     </header>
 
-    <section
-      class="py-5 mb-5"
-      style="background: url(images/background-pattern.jpg)"
-    >
-      <div class="container-fluid">
-        <div class="d-flex justify-content-between">
-          <h1 class="page-title pb-2">Shop</h1>
-          <nav class="breadcrumb fs-6">
-            <a class="breadcrumb-item nav-link" href="#">Home</a>
-            <a class="breadcrumb-item nav-link" href="#">Pages</a>
-            <span class="breadcrumb-item active" aria-current="page">Shop</span>
-          </nav>
-        </div>
-      </div>
-    </section>
-
     <div class="shopify-grid">
       <div class="container-fluid">
         <div class="row g-5">
           <aside class="col-md-2">
             <div class="sidebar">
-              <div class="widget-menu">
+              <!-- <div class="widget-menu">
                 <div class="widget-search-bar">
                   <form
                     role="search"
                     method="get"
                     class="d-flex position-relative"
                   >
-                    <form class="d-flex mt-3 gap-0" action="index.html">
-                      <input
-                        class="form-control form-control-lg rounded-2 bg-light"
-                        type="email"
-                        placeholder="Search here"
-                        aria-label="Search here"
-                      />
-                      <button
-                        class="btn bg-transparent position-absolute end-0"
-                        type="submit"
-                      >
-                        <svg width="24" height="24" viewBox="0 0 24 24">
-                          <use xlink:href="#search"></use>
-                        </svg>
-                      </button>
-                    </form>
+                    <input
+                      class="form-control form-control-lg rounded-2 bg-light"
+                      type="email"
+                      placeholder="Search here"
+                      aria-label="Search here"
+                    />
+                    <button
+                      class="btn bg-transparent position-absolute end-0"
+                      type="submit"
+                    >
+                      <svg width="24" height="24" viewBox="0 0 24 24">
+                        <use xlink:href="#search" />
+                      </svg>
+                    </button>
                   </form>
                 </div>
-              </div>
+              </div> -->
               <div class="widget-product-categories pt-5">
                 <h5 class="widget-title">Categories</h5>
-                <ul class="product-categories sidebar-list list-unstyled">
+                <ul
+                  class="product-categories sidebar-list list-unstyled"
+                  id="category-list"
+                >
                   <li class="cat-item">
-                    <a href="/collections/categories">All</a>
+                    <a href="#" data-category="all">All</a>
                   </li>
-                  <li class="cat-item">
-                    <a href="#" class="nav-link">Phones</a>
-                  </li>
-                  <li class="cat-item">
-                    <a href="#" class="nav-link">Accessories</a>
-                  </li>
-                  <li class="cat-item">
-                    <a href="#" class="nav-link">Tablets</a>
-                  </li>
-                  <li class="cat-item">
-                    <a href="#" class="nav-link">Watches</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="widget-product-tags pt-3">
-                <h5 class="widget-title">Tags</h5>
-                <ul class="product-tags sidebar-list list-unstyled">
-                  <li class="tags-item">
-                    <a href="#" class="nav-link">White</a>
-                  </li>
-                  <li class="tags-item">
-                    <a href="#" class="nav-link">Cheap</a>
-                  </li>
-                  <li class="tags-item">
-                    <a href="#" class="nav-link">Mobile</a>
-                  </li>
-                  <li class="tags-item">
-                    <a href="#" class="nav-link">Modern</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="widget-product-brands pt-3">
-                <h5 class="widget-title">Brands</h5>
-                <ul class="product-tags sidebar-list list-unstyled">
-                  <li class="tags-item">
-                    <a href="#" class="nav-link">Apple</a>
-                  </li>
-                  <li class="tags-item">
-                    <a href="#" class="nav-link">Samsung</a>
-                  </li>
-                  <li class="tags-item">
-                    <a href="#" class="nav-link">Huwai</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="widget-price-filter pt-3">
-                <h5 class="widget-titlewidget-title">Filter By Price</h5>
-                <ul class="product-tags sidebar-list list-unstyled">
-                  <li class="tags-item">
-                    <a href="#" class="nav-link">Less than $10</a>
-                  </li>
-                  <li class="tags-item">
-                    <a href="#" class="nav-link">$10- $20</a>
-                  </li>
-                  <li class="tags-item">
-                    <a href="#" class="nav-link">$20- $30</a>
-                  </li>
-                  <li class="tags-item">
-                    <a href="#" class="nav-link">$30- $40</a>
-                  </li>
-                  <li class="tags-item">
-                    <a href="#" class="nav-link">$40- $50</a>
-                  </li>
+                  <!-- Categories will be dynamically inserted here -->
                 </ul>
               </div>
             </div>
@@ -718,884 +450,40 @@
               <div class="showing-product">
                 <p>Showing 1–9 of 55 results</p>
               </div>
-              <div class="sort-by">
-                <select
-                  id="input-sort"
-                  class="form-control"
-                  data-filter-sort=""
-                  data-filter-order=""
-                >
-                  <option value="">Default sorting</option>
-                  <option value="">Name (A - Z)</option>
-                  <option value="">Name (Z - A)</option>
-                  <option value="">Price (Low-High)</option>
-                  <option value="">Price (High-Low)</option>
-                  <option value="">Rating (Highest)</option>
-                  <option value="">Rating (Lowest)</option>
-                  <option value="">Model (A - Z)</option>
-                  <option value="">Model (Z - A)</option>
-                </select>
-              </div>
             </div>
 
             <div
               class="product-grid row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4"
-            >
+              id="product-grid"
+            ></div>
+
+            <!-- Add this skeleton template -->
+            <template id="skeleton-template">
               <div class="col">
                 <div class="product-item">
-                  <span class="badge bg-success position-absolute m-3"
-                    >-30%</span
-                  >
-                  <a href="#" class="btn-wishlist"
-                    ><svg width="24" height="24">
-                      <use xlink:href="#heart"></use></svg
-                  ></a>
-                  <figure>
-                    <a href="single-product.html" title="Product Title">
-                      <img
-                        src="images/thumb-orange-juice.png"
-                        alt="Product Thumbnail"
-                        class="tab-image"
-                      />
-                    </a>
-                  </figure>
-                  <h3>Sunstar Fresh Melon Juice</h3>
-                  <span class="qty">1 Unit</span
-                  ><span class="rating"
-                    ><svg width="24" height="24" class="text-primary">
-                      <use xlink:href="#star-solid"></use>
-                    </svg>
-                    4.5</span
-                  >
-                  <span class="price">$18.00</span>
+                  <div class="skeleton skeleton-product"></div>
+                  <div class="skeleton skeleton-text"></div>
+                  <div class="skeleton skeleton-text small"></div>
+                  <div class="skeleton skeleton-price"></div>
                   <div
                     class="d-flex align-items-center justify-content-between"
                   >
-                    <div class="input-group product-qty">
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-left-minus btn btn-danger btn-number"
-                          data-type="minus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#minus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                      <input
-                        type="text"
-                        name="quantity"
-                        class="form-control input-number quantity"
-                        value="1"
-                      />
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-right-plus btn btn-success btn-number"
-                          data-type="plus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#plus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                    </div>
-                    <a href="#" class="nav-link"
-                      >Add to Cart
-                      <svg width="18" height="18">
-                        <use xlink:href="#cart"></use></svg
-                    ></a>
+                    <div
+                      class="skeleton skeleton-button"
+                      style="width: 40%"
+                    ></div>
+                    <div
+                      class="skeleton skeleton-button"
+                      style="width: 40%"
+                    ></div>
                   </div>
                 </div>
               </div>
-
-              <div class="col">
-                <div class="product-item">
-                  <a href="#" class="btn-wishlist"
-                    ><svg width="24" height="24">
-                      <use xlink:href="#heart"></use></svg
-                  ></a>
-                  <figure>
-                    <a href="single-product.html" title="Product Title">
-                      <img
-                        src="images/thumb-raspberries.png"
-                        alt="Product Thumbnail"
-                        class="tab-image"
-                      />
-                    </a>
-                  </figure>
-                  <h3>Sunstar Fresh Melon Juice</h3>
-                  <span class="qty">1 Unit</span
-                  ><span class="rating"
-                    ><svg width="24" height="24" class="text-primary">
-                      <use xlink:href="#star-solid"></use>
-                    </svg>
-                    4.5</span
-                  >
-                  <span class="price">$18.00</span>
-                  <div
-                    class="d-flex align-items-center justify-content-between"
-                  >
-                    <div class="input-group product-qty">
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-left-minus btn btn-danger btn-number"
-                          data-type="minus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#minus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                      <input
-                        type="text"
-                        name="quantity"
-                        class="form-control input-number quantity"
-                        value="1"
-                      />
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-right-plus btn btn-success btn-number"
-                          data-type="plus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#plus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                    </div>
-                    <a href="#" class="nav-link"
-                      >Add to Cart
-                      <svg width="18" height="18">
-                        <use xlink:href="#cart"></use></svg
-                    ></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col">
-                <div class="product-item">
-                  <a href="#" class="btn-wishlist"
-                    ><svg width="24" height="24">
-                      <use xlink:href="#heart"></use></svg
-                  ></a>
-                  <figure>
-                    <a href="single-product.html" title="Product Title">
-                      <img src="images/thumb-bananas.png" class="tab-image" />
-                    </a>
-                  </figure>
-                  <h3>Sunstar Fresh Melon Juice</h3>
-                  <span class="qty">1 Unit</span
-                  ><span class="rating"
-                    ><svg width="24" height="24" class="text-primary">
-                      <use xlink:href="#star-solid"></use>
-                    </svg>
-                    4.5</span
-                  >
-                  <span class="price">$18.00</span>
-                  <div
-                    class="d-flex align-items-center justify-content-between"
-                  >
-                    <div class="input-group product-qty">
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-left-minus btn btn-danger btn-number"
-                          data-type="minus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#minus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                      <input
-                        type="text"
-                        name="quantity"
-                        class="form-control input-number quantity"
-                        value="1"
-                      />
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-right-plus btn btn-success btn-number"
-                          data-type="plus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#plus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                    </div>
-                    <a href="#" class="nav-link"
-                      >Add to Cart
-                      <svg width="18" height="18">
-                        <use xlink:href="#cart"></use></svg
-                    ></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col">
-                <div class="product-item">
-                  <a href="#" class="btn-wishlist"
-                    ><svg width="24" height="24">
-                      <use xlink:href="#heart"></use></svg
-                  ></a>
-                  <figure>
-                    <a href="single-product.html" title="Product Title">
-                      <img src="images/thumb-biscuits.png" class="tab-image" />
-                    </a>
-                  </figure>
-                  <h3>Sunstar Fresh Melon Juice</h3>
-                  <span class="qty">1 Unit</span
-                  ><span class="rating"
-                    ><svg width="24" height="24" class="text-primary">
-                      <use xlink:href="#star-solid"></use>
-                    </svg>
-                    4.5</span
-                  >
-                  <span class="price">$18.00</span>
-                  <div
-                    class="d-flex align-items-center justify-content-between"
-                  >
-                    <div class="input-group product-qty">
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-left-minus btn btn-danger btn-number"
-                          data-type="minus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#minus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                      <input
-                        type="text"
-                        name="quantity"
-                        class="form-control input-number quantity"
-                        value="1"
-                      />
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-right-plus btn btn-success btn-number"
-                          data-type="plus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#plus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                    </div>
-                    <a href="#" class="nav-link"
-                      >Add to Cart
-                      <svg width="18" height="18">
-                        <use xlink:href="#cart"></use></svg
-                    ></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col">
-                <div class="product-item">
-                  <a href="#" class="btn-wishlist"
-                    ><svg width="24" height="24">
-                      <use xlink:href="#heart"></use></svg
-                  ></a>
-                  <figure>
-                    <a href="single-product.html" title="Product Title">
-                      <img src="images/thumb-cucumber.png" class="tab-image" />
-                    </a>
-                  </figure>
-                  <h3>Sunstar Fresh Melon Juice</h3>
-                  <span class="qty">1 Unit</span
-                  ><span class="rating"
-                    ><svg width="24" height="24" class="text-primary">
-                      <use xlink:href="#star-solid"></use>
-                    </svg>
-                    4.5</span
-                  >
-                  <span class="price">$18.00</span>
-                  <div
-                    class="d-flex align-items-center justify-content-between"
-                  >
-                    <div class="input-group product-qty">
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-left-minus btn btn-danger btn-number"
-                          data-type="minus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#minus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                      <input
-                        type="text"
-                        name="quantity"
-                        class="form-control input-number quantity"
-                        value="1"
-                      />
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-right-plus btn btn-success btn-number"
-                          data-type="plus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#plus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                    </div>
-                    <a href="#" class="nav-link"
-                      >Add to Cart
-                      <svg width="18" height="18">
-                        <use xlink:href="#cart"></use></svg
-                    ></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col">
-                <div class="product-item">
-                  <a href="#" class="btn-wishlist"
-                    ><svg width="24" height="24">
-                      <use xlink:href="#heart"></use></svg
-                  ></a>
-                  <figure>
-                    <a href="single-product.html" title="Product Title">
-                      <img src="images/thumb-milk.png" class="tab-image" />
-                    </a>
-                  </figure>
-                  <h3>Sunstar Fresh Melon Juice</h3>
-                  <span class="qty">1 Unit</span
-                  ><span class="rating"
-                    ><svg width="24" height="24" class="text-primary">
-                      <use xlink:href="#star-solid"></use>
-                    </svg>
-                    4.5</span
-                  >
-                  <span class="price">$18.00</span>
-                  <div
-                    class="d-flex align-items-center justify-content-between"
-                  >
-                    <div class="input-group product-qty">
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-left-minus btn btn-danger btn-number"
-                          data-type="minus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#minus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                      <input
-                        type="text"
-                        name="quantity"
-                        class="form-control input-number quantity"
-                        value="1"
-                      />
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-right-plus btn btn-success btn-number"
-                          data-type="plus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#plus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                    </div>
-                    <a href="#" class="nav-link"
-                      >Add to Cart
-                      <svg width="18" height="18">
-                        <use xlink:href="#cart"></use></svg
-                    ></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col">
-                <div class="product-item">
-                  <a href="#" class="btn-wishlist"
-                    ><svg width="24" height="24">
-                      <use xlink:href="#heart"></use></svg
-                  ></a>
-                  <figure>
-                    <a href="single-product.html" title="Product Title">
-                      <img src="images/thumb-bananas.png" class="tab-image" />
-                    </a>
-                  </figure>
-                  <h3>Sunstar Fresh Melon Juice</h3>
-                  <span class="qty">1 Unit</span
-                  ><span class="rating"
-                    ><svg width="24" height="24" class="text-primary">
-                      <use xlink:href="#star-solid"></use>
-                    </svg>
-                    4.5</span
-                  >
-                  <span class="price">$18.00</span>
-                  <div
-                    class="d-flex align-items-center justify-content-between"
-                  >
-                    <div class="input-group product-qty">
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-left-minus btn btn-danger btn-number"
-                          data-type="minus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#minus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                      <input
-                        type="text"
-                        name="quantity"
-                        class="form-control input-number quantity"
-                        value="1"
-                      />
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-right-plus btn btn-success btn-number"
-                          data-type="plus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#plus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                    </div>
-                    <a href="#" class="nav-link"
-                      >Add to Cart
-                      <svg width="18" height="18">
-                        <use xlink:href="#cart"></use></svg
-                    ></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col">
-                <div class="product-item">
-                  <a href="#" class="btn-wishlist"
-                    ><svg width="24" height="24">
-                      <use xlink:href="#heart"></use></svg
-                  ></a>
-                  <figure>
-                    <a href="single-product.html" title="Product Title">
-                      <img src="images/thumb-biscuits.png" class="tab-image" />
-                    </a>
-                  </figure>
-                  <h3>Sunstar Fresh Melon Juice</h3>
-                  <span class="qty">1 Unit</span
-                  ><span class="rating"
-                    ><svg width="24" height="24" class="text-primary">
-                      <use xlink:href="#star-solid"></use>
-                    </svg>
-                    4.5</span
-                  >
-                  <span class="price">$18.00</span>
-                  <div
-                    class="d-flex align-items-center justify-content-between"
-                  >
-                    <div class="input-group product-qty">
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-left-minus btn btn-danger btn-number"
-                          data-type="minus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#minus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                      <input
-                        type="text"
-                        name="quantity"
-                        class="form-control input-number quantity"
-                        value="1"
-                      />
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-right-plus btn btn-success btn-number"
-                          data-type="plus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#plus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                    </div>
-                    <a href="#" class="nav-link"
-                      >Add to Cart
-                      <svg width="18" height="18">
-                        <use xlink:href="#cart"></use></svg
-                    ></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col">
-                <div class="product-item">
-                  <a href="#" class="btn-wishlist"
-                    ><svg width="24" height="24">
-                      <use xlink:href="#heart"></use></svg
-                  ></a>
-                  <figure>
-                    <a href="single-product.html" title="Product Title">
-                      <img src="images/thumb-cucumber.png" class="tab-image" />
-                    </a>
-                  </figure>
-                  <h3>Sunstar Fresh Melon Juice</h3>
-                  <span class="qty">1 Unit</span
-                  ><span class="rating"
-                    ><svg width="24" height="24" class="text-primary">
-                      <use xlink:href="#star-solid"></use>
-                    </svg>
-                    4.5</span
-                  >
-                  <span class="price">$18.00</span>
-                  <div
-                    class="d-flex align-items-center justify-content-between"
-                  >
-                    <div class="input-group product-qty">
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-left-minus btn btn-danger btn-number"
-                          data-type="minus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#minus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                      <input
-                        type="text"
-                        name="quantity"
-                        class="form-control input-number quantity"
-                        value="1"
-                      />
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-right-plus btn btn-success btn-number"
-                          data-type="plus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#plus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                    </div>
-                    <a href="#" class="nav-link"
-                      >Add to Cart
-                      <svg width="18" height="18">
-                        <use xlink:href="#cart"></use></svg
-                    ></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col">
-                <div class="product-item">
-                  <a href="#" class="btn-wishlist"
-                    ><svg width="24" height="24">
-                      <use xlink:href="#heart"></use></svg
-                  ></a>
-                  <figure>
-                    <a href="single-product.html" title="Product Title">
-                      <img src="images/thumb-milk.png" class="tab-image" />
-                    </a>
-                  </figure>
-                  <h3>Sunstar Fresh Melon Juice</h3>
-                  <span class="qty">1 Unit</span
-                  ><span class="rating"
-                    ><svg width="24" height="24" class="text-primary">
-                      <use xlink:href="#star-solid"></use>
-                    </svg>
-                    4.5</span
-                  >
-                  <span class="price">$18.00</span>
-                  <div
-                    class="d-flex align-items-center justify-content-between"
-                  >
-                    <div class="input-group product-qty">
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-left-minus btn btn-danger btn-number"
-                          data-type="minus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#minus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                      <input
-                        type="text"
-                        name="quantity"
-                        class="form-control input-number quantity"
-                        value="1"
-                      />
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-right-plus btn btn-success btn-number"
-                          data-type="plus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#plus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                    </div>
-                    <a href="#" class="nav-link"
-                      >Add to Cart
-                      <svg width="18" height="18">
-                        <use xlink:href="#cart"></use></svg
-                    ></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col">
-                <div class="product-item">
-                  <a href="#" class="btn-wishlist"
-                    ><svg width="24" height="24">
-                      <use xlink:href="#heart"></use></svg
-                  ></a>
-                  <figure>
-                    <a href="single-product.html" title="Product Title">
-                      <img src="images/thumb-bananas.png" class="tab-image" />
-                    </a>
-                  </figure>
-                  <h3>Sunstar Fresh Melon Juice</h3>
-                  <span class="qty">1 Unit</span
-                  ><span class="rating"
-                    ><svg width="24" height="24" class="text-primary">
-                      <use xlink:href="#star-solid"></use>
-                    </svg>
-                    4.5</span
-                  >
-                  <span class="price">$18.00</span>
-                  <div
-                    class="d-flex align-items-center justify-content-between"
-                  >
-                    <div class="input-group product-qty">
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-left-minus btn btn-danger btn-number"
-                          data-type="minus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#minus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                      <input
-                        type="text"
-                        name="quantity"
-                        class="form-control input-number quantity"
-                        value="1"
-                      />
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-right-plus btn btn-success btn-number"
-                          data-type="plus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#plus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                    </div>
-                    <a href="#" class="nav-link"
-                      >Add to Cart
-                      <svg width="18" height="18">
-                        <use xlink:href="#cart"></use></svg
-                    ></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col">
-                <div class="product-item">
-                  <a href="#" class="btn-wishlist"
-                    ><svg width="24" height="24">
-                      <use xlink:href="#heart"></use></svg
-                  ></a>
-                  <figure>
-                    <a href="single-product.html" title="Product Title">
-                      <img src="images/thumb-biscuits.png" class="tab-image" />
-                    </a>
-                  </figure>
-                  <h3>Sunstar Fresh Melon Juice</h3>
-                  <span class="qty">1 Unit</span
-                  ><span class="rating"
-                    ><svg width="24" height="24" class="text-primary">
-                      <use xlink:href="#star-solid"></use>
-                    </svg>
-                    4.5</span
-                  >
-                  <span class="price">$18.00</span>
-                  <div
-                    class="d-flex align-items-center justify-content-between"
-                  >
-                    <div class="input-group product-qty">
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-left-minus btn btn-danger btn-number"
-                          data-type="minus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#minus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                      <input
-                        type="text"
-                        name="quantity"
-                        class="form-control input-number quantity"
-                        value="1"
-                      />
-                      <span class="input-group-btn">
-                        <button
-                          type="button"
-                          class="quantity-right-plus btn btn-success btn-number"
-                          data-type="plus"
-                        >
-                          <svg width="16" height="16">
-                            <use xlink:href="#plus"></use>
-                          </svg>
-                        </button>
-                      </span>
-                    </div>
-                    <a href="#" class="nav-link"
-                      >Add to Cart
-                      <svg width="18" height="18">
-                        <use xlink:href="#cart"></use></svg
-                    ></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- / product-grid -->
-
-            <nav class="text-center py-4" aria-label="Page navigation">
-              <ul class="pagination d-flex justify-content-center">
-                <li class="page-item disabled">
-                  <a
-                    class="page-link bg-none border-0"
-                    href="#"
-                    aria-label="Previous"
-                  >
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                <li class="page-item active" aria-current="page">
-                  <a class="page-link border-0" href="#">1</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link border-0" href="#">2</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link border-0" href="#">3</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link border-0" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
+            </template>
           </main>
         </div>
       </div>
     </div>
-
-    <section class="py-5">
-      <div class="container-fluid">
-        <div
-          class="bg-secondary py-5 my-5 rounded-5"
-          style="background: url('images/bg-leaves-img-pattern.png') no-repeat"
-        >
-          <div class="container my-5">
-            <div class="row">
-              <div class="col-md-6 p-5">
-                <div class="section-header">
-                  <h2 class="section-title display-4">
-                    Get <span class="text-primary">25% Discount</span> on your
-                    first purchase
-                  </h2>
-                </div>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Dictumst amet, metus, sit massa posuere maecenas. At tellus ut
-                  nunc amet vel egestas.
-                </p>
-              </div>
-              <div class="col-md-6 p-5">
-                <form>
-                  <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input
-                      type="text"
-                      class="form-control form-control-lg"
-                      name="name"
-                      id="name"
-                      placeholder="Name"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label for="" class="form-label">Email</label>
-                    <input
-                      type="email"
-                      class="form-control form-control-lg"
-                      name="email"
-                      id="email"
-                      placeholder="abc@mail.com"
-                    />
-                  </div>
-                  <div class="form-check form-check-inline mb-3">
-                    <label class="form-check-label" for="subscribe">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="subscribe"
-                        value="subscribe"
-                      />
-                      Subscribe to the newsletter</label
-                    >
-                  </div>
-                  <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-dark btn-lg">
-                      Submit
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <footer class="py-5">
       <div class="container-fluid">
@@ -1630,7 +518,7 @@
                       >
                         <path
                           fill="currentColor"
-                          d="M22.991 3.95a1 1 0 0 0-1.51-.86a7.48 7.48 0 0 1-1.874.794a5.152 5.152 0 0 0-3.374-1.242a5.232 5.232 0 0 0-5.223 5.063a11.032 11.032 0 0 1-6.814-3.924a1.012 1.012 0 0 0-.857-.365a.999.999 0 0 0-.785.5a5.276 5.276 0 0 0-.242 4.769l-.002.001a1.041 1.041 0 0 0-.496.89a3.042 3.042 0 0 0 .027.439a5.185 5.185 0 0 0 1.568 3.312a.998.998 0 0 0-.066.77a5.204 5.204 0 0 0 2.362 2.922a7.465 7.465 0 0 1-3.59.448A1 1 0 0 0 1.45 19.3a12.942 12.942 0 0 0 7.01 2.061a12.788 12.788 0 0 0 12.465-9.363a12.822 12.822 0 0 0 .535-3.646l-.001-.2a5.77 5.77 0 0 0 1.532-4.202Zm-3.306 3.212a.995.995 0 0 0-.234.702c.01.165.009.331.009.488a10.824 10.824 0 0 1-.454 3.08a10.685 10.685 0 0 1-10.546 7.93a10.938 10.938 0 0 1-2.55-.301a9.48 9.48 0 0 0 2.942-1.564a1 1 0 0 0-.602-1.786a3.208 3.208 0 0 1-2.214-.935q.224-.042.445-.105a1 1 0 0 0-.08-1.943a3.198 3.198 0 0 1-2.25-1.726a5.3 5.3 0 0 0 .545.046a1.02 1.02 0 0 0 .984-.696a1 1 0 0 0-.4-1.137a3.196 3.196 0 0 1-1.425-2.673c0-.066.002-.133.006-.198a13.014 13.014 0 0 0 8.21 3.48a1.02 1.02 0 0 0 .817-.36a1 1 0 0 0 .206-.867a3.157 3.157 0 0 1-.087-.729a3.23 3.23 0 0 1 3.226-3.226a3.184 3.184 0 0 1 2.345 1.02a.993.993 0 0 0 .921.298a9.27 9.27 0 0 0 1.212-.322a6.681 6.681 0 0 1-1.026 1.524Z"
+                          d="M22.991 3.95a1 1 0 0 0-1.51-.86a7.48 7.48 0 0 1-1.874.794a5.152 5.152 0 0 0-3.374-1.242a5.232 5.232 0 0 0-5.223 5.063a11.032 11.032 0 0 1-6.814-3.924a1.012 1.012 0 0 0-.857-.365a.999.999 0 0 0-.785.5a5.276 5.276 0 0 0-.242 4.769l-.002.001a1.041 1.041 0 0 0-.496.89a3.042 3.042 0 0 0 .027.439a5.185 5.185 0 0 0 1.568 3.312a.998.998 0 0 0-.066.77a5.204 5.204 0 0 0 2.362 2.922a7.465 7.465 0 0 1-3.59.448A1 1 0 0 0 1.45 19.3a12.942 12.942 0 0 0 7.01 2.061a12.788 12.788 0 0 0 12.465-9.363a12.822 12.822 0 0 0 .535-3.646l-.001-.2a5.77 5.77 0 0 0 1.532-4.202Zm-3.306 3.212a.995.995 0 0 0-.234.702c.01.165.009.331.009.488a10.824 10.824 0 0 1-.454 3.08a10.685 10.685 0 0 1-10.546 7.93a10.938 10.938 0 0 1-2.55-.301a9.48 9.48 0 0 0 2.942-1.564a1 1 0 0 0-.602-1.786a3.208 3.208 0 0 1-2.214-.935q.224-.042.445-.105a1 1 0 0 0-.08-1.943a3.196 3.196 0 0 1-2.25-1.726a5.3 5.3 0 0 0 .545.046a1.02 1.02 0 0 0 .984-.696a1 1 0 0 0-.4-1.137a3.196 3.196 0 0 1-1.425-2.673c0-.066.002-.133.006-.198a13.014 13.014 0 0 0 8.21 3.48a1.02 1.02 0 0 0 .817-.36a1 1 0 0 0 .206-.867a3.157 3.157 0 0 1-.087-.729a3.23 3.23 0 0 1 3.226-3.226a3.184 3.184 0 0 1 2.345 1.02a.993.993 0 0 0 .921.298a9.27 9.27 0 0 0 1.212-.322a6.681 6.681 0 0 1-1.026 1.524Z"
                         />
                       </svg>
                     </a>
@@ -1675,7 +563,7 @@
                       >
                         <path
                           fill="currentColor"
-                          d="M1.04 17.52q.1-.16.32-.02a21.308 21.308 0 0 0 10.88 2.9a21.524 21.524 0 0 0 7.74-1.46q.1-.04.29-.12t.27-.12a.356.356 0 0 1 .47.12q.17.24-.11.44q-.36.26-.92.6a14.99 14.99 0 0 1-3.84 1.58A16.175 16.175 0 0 1 12 22a16.017 16.017 0 0 1-5.9-1.09a16.246 16.246 0 0 1-4.98-3.07a.273.273 0 0 1-.12-.2a.215.215 0 0 1 .04-.12Zm6.02-5.7a4.036 4.036 0 0 1 .68-2.36A4.197 4.197 0 0 1 9.6 7.98a10.063 10.063 0 0 1 2.66-.66q.54-.06 1.76-.16v-.34a3.562 3.562 0 0 0-.28-1.72a1.5 1.5 0 0 0-1.32-.6h-.16a2.189 2.189 0 0 0-1.14.42a1.64 1.64 0 0 0-.62 1a.508.508 0 0 1-.4.46L7.8 6.1q-.34-.08-.34-.36a.587.587 0 0 1 .02-.14a3.834 3.834 0 0 1 1.67-2.64A6.268 6.268 0 0 1 12.26 2h.5a5.054 5.054 0 0 1 3.56 1.18a3.81 3.81 0 0 1 .37.43a3.875 3.875 0 0 1 .27.41a2.098 2.098 0 0 1 .18.52q.08.34.12.47a2.856 2.856 0 0 1 .06.56q.02.43.02.51v4.84a2.868 2.868 0 0 0 .15.95a2.475 2.475 0 0 0 .29.62q.14.19.46.61a.599.599 0 0 1 .12.32a.346.346 0 0 1-.16.28q-1.66 1.44-1.8 1.56a.557.557 0 0 1-.58.04q-.28-.24-.49-.46t-.3-.32a4.466 4.466 0 0 1-.29-.39q-.2-.29-.28-.39a4.91 4.91 0 0 1-2.2 1.52a6.038 6.038 0 0 1-1.68.2a3.505 3.505 0 0 1-2.53-.95a3.553 3.553 0 0 1-.99-2.69Zm3.44-.4a1.895 1.895 0 0 0 .39 1.25a1.294 1.294 0 0 0 1.05.47a1.022 1.022 0 0 0 .17-.02a1.022 1.022 0 0 1 .15-.02a2.033 2.033 0 0 0 1.3-1.08a3.13 3.13 0 0 0 .33-.83a3.8 3.8 0 0 0 .12-.73q.01-.28.01-.92v-.5a7.287 7.287 0 0 0-1.76.16a2.144 2.144 0 0 0-1.76 2.22Zm8.4 6.44a.626.626 0 0 1 .12-.16a3.14 3.14 0 0 1 .96-.46a6.52 6.52 0 0 1 1.48-.22a1.195 1.195 0 0 1 .38.02q.9.08 1.08.3a.655.655 0 0 1 .08.36v.14a4.56 4.56 0 0 1-.38 1.65a3.84 3.84 0 0 1-1.06 1.53a.302.302 0 0 1-.18.08a.177.177 0 0 1-.08-.02q-.12-.06-.06-.22a7.632 7.632 0 0 0 .74-2.42a.513.513 0 0 0-.08-.32q-.2-.24-1.12-.24q-.34 0-.8.04q-.5.06-.92.12a.232.232 0 0 1-.16-.04a.065.065 0 0 1-.02-.08a.153.153 0 0 1 .02-.06Z"
+                          d="M1.04 17.52q.1-.16.32-.02a21.308 21.308 0 0 0 10.88 2.9a21.524 21.524 0 0 0 7.74-1.46q.1-.04.29-.12t.27-.12a.356.356 0 0 1 .47.12q.17.24-.11.44q-.36.26-.92.6a14.99 14.99 0 0 1-3.84 1.58A16.175 16.175 0 0 1 12 22a16.017 16.017 0 0 1-5.9-1.09a16.246 16.246 0 0 1-4.98-3.07a.273.273 0 0 1-.12-.2a.215.215 0 0 1 .04-.12Zm6.02-5.7a4.036 4.036 0 0 1 .68-2.36A4.197 4.197 0 0 1 9.6 7.98a10.063 10.063 0 0 1 2.66-.66q.54-.06 1.76-.16v-.34a3.562 3.562 0 0 0-.28-1.72a1.5 1.5 0 0 0-1.32-.6h-.16a2.189 2.189 0 0 0-1.14.42a1.64 1.64 0 0 0-.62 1a.508.508 0 0 1-.4.46L7.8 6.1q-.34-.08-.34-.36a.587.587 0 0 1 .02-.14a3.834 3.834 0 0 1 1.67-2.64A6.268 6.268 0 0 1 12.26 2h.5a5.054 5.054 0 0 1 3.56 1.18a3.81 3.81 0 0 1 .37.43a3.875 3.875 0 0 1 .27.41a2.098 2.098 0 0 1 .18.52q.08.34.12.47a2.856 2.856 0 0 1 .06.56q.02.43.02.51v4.84a2.868 2.868 0 0 0 .15.95a2.475 2.475 0 0 0 .29.62q.14.19.46.61a.599.599 0 0 1 .12.32a.346.346 0 0 1-.16.28q-1.66 1.44-1.8 1.56a.557.557 0 0 1-.58.04q-.28-.24-.49-.46t-.3-.32a4.466 4.466 0 0 1-.29-.39q-.2-.29-.28-.39a4.91 4.91 0 0 1-2.2 1.52a6.038 6.038 0 0 1-1.68.2a3.505 3.505 0 0 1-2.53-.95a3.553 3.553 0 0 1-.99-2.69Zm3.44-.4a1.895 1.895 0 0 0 .39 1.25a1.294 1.294 0 0 0 1.05.47a1.022 1.022 0 0 1 .17-.02a1.022 1.022 0 0 0 .15-.02a2.033 2.033 0 0 0 1.3-1.08a3.13 3.13 0 0 0 .33-.83a3.8 3.8 0 0 0 .12-.73q.01-.28.01-.92v-.5a7.287 7.287 0 0 0-1.76.16a2.144 2.144 0 0 0-1.76 2.22Zm8.4 6.44a.626.626 0 0 1 .12-.16a3.14 3.14 0 0 1 .96-.46a6.52 6.52 0 0 1 1.48-.22a1.195 1.195 0 0 1 .38.02q.9.08 1.08.3a.655.655 0 0 1 .08.36v.14a4.56 4.56 0 0 1-.38 1.65a3.84 3.84 0 0 1-1.06 1.53a.302.302 0 0 1-.18.08a.177.177 0 0 1-.08-.02q-.12-.06-.06-.22a7.632 7.632 0 0 0 .74-2.42a.513.513 0 0 0-.08-.32q-.2-.24-1.12-.24q-.34 0-.8.04q-.5.06-.92.12a.232.232 0 0 1-.16-.04a.065.065 0 0 1-.02-.08a.153.153 0 0 1 .02-.06Z"
                         />
                       </svg>
                     </a>
@@ -1687,120 +575,32 @@
 
           <div class="col-md-2 col-sm-6">
             <div class="footer-menu">
-              <h5 class="widget-title">Ultras</h5>
+              <h5 class="widget-title">Quick Links</h5>
               <ul class="menu-list list-unstyled">
                 <li class="menu-item">
-                  <a href="#" class="nav-link">About us</a>
+                  <a href="index.html" class="nav-link">Home</a>
                 </li>
                 <li class="menu-item">
-                  <a href="#" class="nav-link">Conditions </a>
+                  <a href="shop.html" class="nav-link">Shop</a>
                 </li>
                 <li class="menu-item">
-                  <a href="#" class="nav-link">Our Journals</a>
+                  <a href="blog.html" class="nav-link">Blog</a>
                 </li>
                 <li class="menu-item">
-                  <a href="#" class="nav-link">Careers</a>
+                  <a href="about.html" class="nav-link">About</a>
                 </li>
                 <li class="menu-item">
-                  <a href="#" class="nav-link">Affiliate Programme</a>
-                </li>
-                <li class="menu-item">
-                  <a href="#" class="nav-link">Ultras Press</a>
+                  <a href="contact.html" class="nav-link">Contact</a>
                 </li>
               </ul>
             </div>
           </div>
-          <div class="col-md-2 col-sm-6">
-            <div class="footer-menu">
-              <h5 class="widget-title">Customer Service</h5>
-              <ul class="menu-list list-unstyled">
-                <li class="menu-item">
-                  <a href="#" class="nav-link">FAQ</a>
-                </li>
-                <li class="menu-item">
-                  <a href="#" class="nav-link">Contact</a>
-                </li>
-                <li class="menu-item">
-                  <a href="#" class="nav-link">Privacy Policy</a>
-                </li>
-                <li class="menu-item">
-                  <a href="#" class="nav-link">Returns & Refunds</a>
-                </li>
-                <li class="menu-item">
-                  <a href="#" class="nav-link">Cookie Guidelines</a>
-                </li>
-                <li class="menu-item">
-                  <a href="#" class="nav-link">Delivery Information</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-6">
-            <div class="footer-menu">
-              <h5 class="widget-title">Customer Service</h5>
-              <ul class="menu-list list-unstyled">
-                <li class="menu-item">
-                  <a href="#" class="nav-link">FAQ</a>
-                </li>
-                <li class="menu-item">
-                  <a href="#" class="nav-link">Contact</a>
-                </li>
-                <li class="menu-item">
-                  <a href="#" class="nav-link">Privacy Policy</a>
-                </li>
-                <li class="menu-item">
-                  <a href="#" class="nav-link">Returns & Refunds</a>
-                </li>
-                <li class="menu-item">
-                  <a href="#" class="nav-link">Cookie Guidelines</a>
-                </li>
-                <li class="menu-item">
-                  <a href="#" class="nav-link">Delivery Information</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="footer-menu">
-              <h5 class="widget-title">Subscribe Us</h5>
-              <p>
-                Subscribe to our newsletter to get updates about our grand
-                offers.
-              </p>
-              <form class="d-flex mt-3 gap-0" action="index.html">
-                <input
-                  class="form-control rounded-start rounded-0 bg-light"
-                  type="email"
-                  placeholder="Email Address"
-                  aria-label="Email Address"
-                />
-                <button
-                  class="btn btn-dark rounded-end rounded-0"
-                  type="submit"
-                >
-                  Subscribe
-                </button>
-              </form>
-            </div>
-          </div>
+          <div class="col-md-2 col-sm-6"></div>
+          <div class="col-md-2 col-sm-6"></div>
+          <div class="col-lg-3 col-md-6 col-sm-6"></div>
         </div>
       </div>
     </footer>
-    <div id="footer-bottom">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-6 copyright">
-            <p>© 2023 Foodmart. All rights reserved.</p>
-          </div>
-          <div class="col-md-6 credit-link text-start text-md-end">
-            <p>
-              Free HTML Template by
-              <a href="https://templatesjungle.com/">TemplatesJungle</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script
@@ -1810,5 +610,714 @@
     ></script>
     <script src="js/plugins.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/fetchProducts.js"></script>
+    <script src="js/loadingSkeleton.js"></script>
+    <script src="js/cartManager.js"></script>
+    <script>
+      const cartManager = new CartManager();
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        const productGrid = document.getElementById("product-grid");
+        const productCount = document.querySelector(".showing-product p");
+        let allProducts = []; // Store all products for filtering
+
+        // Initialize toast at the start
+        const toastElement = document.getElementById("cartToast");
+        const toast = new bootstrap.Toast(toastElement, {
+          delay: 3000,
+        });
+
+        // Function to filter products by search query
+        function filterProductsBySearch(products, query) {
+          query = query.toLowerCase().trim();
+          return products.filter(
+            (product) =>
+              product.title.toLowerCase().includes(query) ||
+              product.description.toLowerCase().includes(query) ||
+              product.category.toLowerCase().includes(query)
+          );
+        }
+
+        // Show loading skeleton
+        showLoadingSkeleton(productGrid);
+
+        try {
+          // Load data
+          const [products, categories] = await Promise.all([
+            fetchProducts(),
+            fetchCategories(),
+          ]);
+
+          // Store all products globally
+          allProducts = products;
+
+          // Update product count
+          productCount.textContent = `Showing 1–${products.length} of ${products.length} results`;
+
+          // Load categories
+          const categoryList = document.getElementById("category-list");
+          categories.forEach((category) => {
+            const li = document.createElement("li");
+            li.className = "cat-item";
+            li.innerHTML = `<a href="#" class="nav-link" data-category="${category}">${category}</a>`;
+            categoryList.appendChild(li);
+          });
+
+          // Function to render products
+          const renderProducts = (products) => {
+            // Hide loading skeleton
+            hideLoadingSkeleton(productGrid);
+
+            if (products.length === 0) {
+              productGrid.innerHTML =
+                '<div class="col-12 text-center py-5">No products found matching your search.</div>';
+              return;
+            }
+
+            productCount.textContent = `Showing 1–${products.length} of ${products.length} results`;
+
+            productGrid.innerHTML = products
+              .map(
+                (product) => `
+              <div class="col">
+                <div class="product-item" data-product-id="${product.id}">
+                  <a href="#" class="btn-wishlist ${
+                    cartManager.isInWishlist(product.id) ? "active" : ""
+                  }" data-action="wishlist">
+                    <svg width="24" height="24">
+                      <use xlink:href="#heart"></use>
+                    </svg>
+                  </a>
+                  <figure>
+                    <a href="single-product.html?id=${product.id}" title="${
+                  product.title
+                }">
+                      <img src="${product.image}" alt="${
+                  product.title
+                }" style="max-height: 210px; width: auto;">
+                    </a>
+                  </figure>
+                  <h3>${product.title}</h3>
+                  <span class="qty">${product.category}</span>
+                  <span class="rating">
+                    <svg width="24" height="24" class="text-primary">
+                      <use xlink:href="#star-solid"></use>
+                    </svg>
+                    ${product.rating.rate}
+                  </span>
+                  <span class="price">$${product.price}</span>
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div class="input-group product-qty" data-action="quantity">
+                      <span class="input-group-btn">
+                        <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus">
+                          <svg width="16" height="16"><use xlink:href="#minus"></use></svg>
+                        </button>
+                      </span>
+                      <input type="text" name="quantity" class="form-control input-number quantity" value="1" min="1" max="100">
+                      <span class="input-group-btn">
+                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
+                          <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
+                        </button>
+                      </span>
+                    </div>
+                    <a href="#" class="nav-link" data-action="add-to-cart">Add to Cart
+                      <svg width="18" height="18"><use xlink:href="#cart"></use></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            `
+              )
+              .join("");
+
+            initProductActions();
+          };
+
+          // Initial render
+          renderProducts(products);
+
+          // Handle search forms submission
+          const searchForms = document.querySelectorAll('form[role="search"]');
+          searchForms.forEach((form) => {
+            form.addEventListener("submit", async (e) => {
+              e.preventDefault();
+              const searchInput = e.target.querySelector("input");
+              const searchQuery = searchInput.value;
+
+              // Show loading skeleton
+              showLoadingSkeleton(productGrid);
+
+              // Filter products
+              const searchResults = filterProductsBySearch(
+                allProducts,
+                searchQuery
+              );
+
+              // Render filtered products
+              renderProducts(searchResults);
+
+              // Close search offcanvas if open
+              const offcanvasSearch =
+                document.getElementById("offcanvasSearch");
+              const bsOffcanvas =
+                bootstrap.Offcanvas.getInstance(offcanvasSearch);
+              if (bsOffcanvas) {
+                bsOffcanvas.hide();
+              }
+            });
+          });
+
+          // Category filter functionality with loading state
+          categoryList.addEventListener("click", async (e) => {
+            e.preventDefault();
+            const categoryLink = e.target.closest("[data-category]");
+            if (!categoryLink) return;
+            // Show loading skeleton
+            showLoadingSkeleton(productGrid);
+            const category = categoryLink.dataset.category;
+            let filteredProducts;
+            try {
+              if (category === "all") {
+                filteredProducts = await fetchProducts();
+              } else {
+                filteredProducts = await fetchProductsByCategory(category);
+              }
+              productCount.textContent = `Showing 1–${filteredProducts.length} of ${filteredProducts.length} results`;
+              renderProducts(filteredProducts);
+            } catch (error) {
+              console.error("Error filtering products:", error);
+              productGrid.innerHTML =
+                '<div class="col-12 text-center">Error loading products</div>';
+            }
+          });
+        } catch (error) {
+          console.error("Error initializing shop:", error);
+          productGrid.innerHTML =
+            '<div class="col-12 text-center">Error loading products</div>';
+        }
+        // Initialize quantity buttons (same as before)
+        function initQuantityButtons() {
+          // ... existing quantity button code ...
+        }
+
+        function initProductActions() {
+          productGrid.addEventListener("click", (e) => {
+            e.preventDefault();
+            const productItem = e.target.closest(".product-item");
+            if (!productItem) return;
+
+            const productId = productItem.dataset.productId;
+            const action = e.target.closest("[data-action]")?.dataset.action;
+
+            if (action === "wishlist") {
+              const wishlistBtn = e.target.closest("[data-action='wishlist']");
+              if (wishlistBtn) {
+                const isActive = cartManager.toggleWishlist(productId);
+                wishlistBtn.classList.toggle("active", isActive);
+              }
+            }
+
+            // ...rest of existing initProductActions code...
+            if (action === "add-to-cart") {
+              const quantityInput = productItem.querySelector(".quantity");
+              const quantity = parseInt(quantityInput.value);
+              cartManager.addToCart(productId, quantity);
+              // Show Bootstrap toast instead of alert
+              toast.show();
+            }
+          });
+
+          // Quantity controls
+          productGrid.querySelectorAll(".product-qty").forEach((qtyControl) => {
+            const input = qtyControl.querySelector(".quantity");
+            const minusBtn = qtyControl.querySelector('[data-type="minus"]');
+            const plusBtn = qtyControl.querySelector('[data-type="plus"]');
+
+            minusBtn.addEventListener("click", () => {
+              const currentValue = parseInt(input.value);
+              if (currentValue > 1) {
+                input.value = currentValue - 1;
+              }
+            });
+
+            plusBtn.addEventListener("click", () => {
+              const currentValue = parseInt(input.value);
+              input.value = currentValue + 1;
+            });
+
+            input.addEventListener("change", () => {
+              let value = parseInt(input.value);
+              if (isNaN(value) || value < 1) {
+                input.value = 1;
+              }
+            });
+          });
+        }
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        const cartManager = window.cartManager || new CartManager();
+
+        async function updateHeaderCart() {
+          const cartItemsList = document.getElementById("cart-items");
+          const cartCount = document.querySelectorAll(".cart-count");
+          const products = await fetchProducts();
+          const cart = cartManager.cart;
+          let total = 0;
+
+          // Clear existing items
+          cartItemsList.innerHTML = "";
+
+          // Render each cart item
+          for (const [productId, quantity] of Object.entries(cart)) {
+            const product = products.find((p) => p.id.toString() === productId);
+            if (product) {
+              const itemTotal = product.price * quantity;
+              total += itemTotal;
+
+              cartItemsList.innerHTML += `
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">${product.title}</h6>
+              <small class="text-muted">Quantity: ${quantity}</small>
+            </div>
+            <div class="d-flex align-items-center">
+              <span class="text-muted me-3">$${itemTotal.toFixed(2)}</span>
+              <button class="btn btn-link text-primary p-0 delete-item" data-product-id="${productId}">
+                <svg width="20" height="20" style="margin-top: -4px;">
+                  <use xlink:href="#trash"></use>
+                </svg>
+              </button>
+            </div>
+          </li>
+        `;
+            }
+          }
+
+          // Add total if cart has items
+          if (Object.keys(cart).length > 0) {
+            cartItemsList.innerHTML += `
+        <li class="list-group-item d-flex justify-content-between">
+          <span>Total (USD)</span>
+          <strong>$${total.toFixed(2)}</strong>
+        </li>
+      `;
+          } else {
+            cartItemsList.innerHTML = `
+        <li class="list-group-item text-center py-4">
+          <p class="mb-0">Your cart is empty</p>
+        </li>
+      `;
+          }
+
+          // Update all cart count badges
+          cartCount.forEach((badge) => {
+            badge.textContent = Object.values(cart).reduce((a, b) => a + b, 0);
+          });
+
+          // Add event listeners to delete buttons
+          cartItemsList.querySelectorAll(".delete-item").forEach((button) => {
+            button.addEventListener("click", (e) => {
+              const productId = e.currentTarget.dataset.productId;
+              cartManager.removeFromCart(productId);
+              updateHeaderCart(); // Refresh cart display
+            });
+          });
+        }
+
+        // Initial cart update
+        await updateHeaderCart();
+
+        // Update cart when items are added/removed
+        document.addEventListener("cartUpdated", async () => {
+          await updateHeaderCart();
+        });
+      });
+    </script>
+    <!-- Add this before closing body tag -->
+    <div
+      class="modal fade"
+      id="checkoutModal"
+      tabindex="-1"
+      aria-labelledby="checkoutModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="checkoutModalLabel">Checkout</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-7">
+                <h4 class="mb-3">Shipping address</h4>
+                <form class="needs-validation" id="shippingForm" novalidate>
+                  <div class="row g-3">
+                    <div class="col-sm-6">
+                      <label for="firstName" class="form-label"
+                        >First name</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="firstName"
+                        required
+                      />
+                      <div class="invalid-feedback">
+                        Valid first name is required.
+                      </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                      <label for="lastName" class="form-label">Last name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="lastName"
+                        required
+                      />
+                      <div class="invalid-feedback">
+                        Valid last name is required.
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="email" class="form-label">Email</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        placeholder="you@example.com"
+                        required
+                      />
+                      <div class="invalid-feedback">
+                        Please enter a valid email address for shipping updates.
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="address" class="form-label">Address</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="address"
+                        required
+                      />
+                      <div class="invalid-feedback">
+                        Please enter your shipping address.
+                      </div>
+                    </div>
+
+                    <div class="col-md-5">
+                      <label for="country" class="form-label">Country</label>
+                      <select class="form-select" id="country" required>
+                        <option value="">Choose...</option>
+                        <option>Cambodia</option>
+                      </select>
+                      <div class="invalid-feedback">
+                        Please select a valid country.
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <label for="state" class="form-label">State</label>
+                      <select class="form-select" id="state" required>
+                        <option value="">Choose...</option>
+                        <option>Phnom Penh</option>
+                      </select>
+                      <div class="invalid-feedback">
+                        Please provide a valid state.
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label for="zip" class="form-label">Zip</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="zip"
+                        required
+                      />
+                      <div class="invalid-feedback">Zip code required.</div>
+                    </div>
+                  </div>
+
+                  <hr class="my-4" />
+                  <button class="btn btn-primary w-100" type="submit">
+                    Continue to payment
+                  </button>
+                </form>
+              </div>
+
+              <div class="col-md-5">
+                <div class="p-4 bg-light rounded">
+                  <h4 class="mb-3">Order Summary</h4>
+                  <ul class="list-group mb-3" id="checkout-items">
+                    <!-- Cart items will be loaded here -->
+                  </ul>
+                  <hr />
+                  <div id="paypal-button-container" style="display: none"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add PayPal SDK before your closing body tag -->
+    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const checkoutBtn = document.getElementById("checkoutBtn");
+        const checkoutModal = new bootstrap.Modal(
+          document.getElementById("checkoutModal")
+        );
+        const form = document.querySelector("#shippingForm");
+        const cartManager = window.cartManager || new CartManager();
+
+        // Show modal when checkout button is clicked
+        checkoutBtn.addEventListener("click", async () => {
+          // Close the cart offcanvas
+          const offcanvasCart = bootstrap.Offcanvas.getInstance(
+            document.getElementById("offcanvasCart")
+          );
+          offcanvasCart.hide();
+
+          // Update order summary
+          await updateOrderSummary();
+
+          // Show checkout modal
+          checkoutModal.show();
+        });
+
+        // Handle form submission
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          if (!form.checkValidity()) {
+            event.stopPropagation();
+          } else {
+            // If form is valid, show PayPal buttons
+            document.querySelector("#paypal-button-container").style.display =
+              "block";
+            initializePayPalButton();
+          }
+          form.classList.add("was-validated");
+        });
+
+        async function updateOrderSummary() {
+          const checkoutItems = document.getElementById("checkout-items");
+          const products = await fetchProducts();
+          const cart = cartManager.cart;
+          let total = 0;
+
+          checkoutItems.innerHTML = "";
+
+          for (const [productId, quantity] of Object.entries(cart)) {
+            const product = products.find((p) => p.id.toString() === productId);
+            if (product) {
+              const itemTotal = product.price * quantity;
+              total += itemTotal;
+
+              checkoutItems.innerHTML += `
+                <li class="list-group-item d-flex justify-content-between">
+                  <div>
+                    <h6 class="my-0">${product.title}</h6>
+                    <small class="text-muted">Quantity: ${quantity}</small>
+                  </div>
+                  <span>$${itemTotal.toFixed(2)}</span>
+                </li>
+              `;
+            }
+          }
+
+          checkoutItems.innerHTML += `
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total (USD)</span>
+              <strong>$${total.toFixed(2)}</strong>
+            </li>
+          `;
+
+          return total;
+        }
+
+        function initializePayPalButton() {
+          const paypalContainer = document.querySelector(
+            "#paypal-button-container"
+          );
+          paypalContainer.innerHTML = ""; // Clear existing buttons
+
+          paypal
+            .Buttons({
+              createOrder: async (data, actions) => {
+                const total = await updateOrderSummary();
+                return actions.order.create({
+                  purchase_units: [
+                    {
+                      amount: {
+                        value: total.toFixed(2),
+                      },
+                    },
+                  ],
+                });
+              },
+              onApprove: function (data, actions) {
+                return actions.order.capture().then(function (details) {
+                  // Clear the cart
+                  cartManager.clearCart();
+
+                  // Show success message
+                  const successToast = new bootstrap.Toast(
+                    document.getElementById("successToast")
+                  );
+                  successToast.show();
+
+                  // Close checkout modal
+                  checkoutModal.hide();
+
+                  // Close cart offcanvas if open
+                  const cartOffcanvas =
+                    document.getElementById("offcanvasCart");
+                  if (cartOffcanvas) {
+                    const bsOffcanvas =
+                      bootstrap.Offcanvas.getInstance(cartOffcanvas);
+                    if (bsOffcanvas) {
+                      bsOffcanvas.hide();
+                    }
+                  }
+
+                  // Update cart display
+                  updateHeaderCart();
+                });
+              },
+            })
+            .render("#paypal-button-container");
+        }
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        const cartManager = window.cartManager || new CartManager();
+
+        // Function to update all cart count badges
+        function updateCartBadges() {
+          const cartCount = Object.values(cartManager.cart).reduce(
+            (a, b) => a + b,
+            0
+          );
+          document.querySelectorAll(".cart-count").forEach((badge) => {
+            badge.textContent = cartCount;
+          });
+        }
+
+        // Initial cart badge update
+        updateCartBadges();
+
+        // Listen for cart updates
+        document.addEventListener("cartUpdated", () => {
+          updateCartBadges();
+        });
+
+        // ... rest of your existing DOMContentLoaded code ...
+
+        function initProductActions() {
+          productGrid.addEventListener("click", (e) => {
+            e.preventDefault();
+            const productItem = e.target.closest(".product-item");
+            if (!productItem) return;
+
+            const productId = productItem.dataset.productId;
+            const action = e.target.closest("[data-action]")?.dataset.action;
+
+            if (action === "wishlist") {
+              const wishlistBtn = e.target.closest("[data-action='wishlist']");
+              if (wishlistBtn) {
+                const isActive = cartManager.toggleWishlist(productId);
+                wishlistBtn.classList.toggle("active", isActive);
+              }
+            }
+
+            if (action === "add-to-cart") {
+              const quantityInput = productItem.querySelector(".quantity");
+              const quantity = parseInt(quantityInput.value);
+              cartManager.addToCart(productId, quantity);
+
+              // Show Bootstrap toast
+              const toast = new bootstrap.Toast(
+                document.getElementById("cartToast")
+              );
+              toast.show();
+            }
+          });
+
+          // ... rest of existing initProductActions code ...
+        }
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        const cartManager = window.cartManager || new CartManager();
+
+        // Update all badges when cart changes
+        document.addEventListener("cartUpdated", () => {
+          cartManager.updateCartCount();
+        });
+
+        // Update badges initially
+        cartManager.updateCartCount();
+
+        // ...rest of your existing code...
+      });
+    </script>
+
+    <!-- Remove or modify the existing updateHeaderCart script since we now handle updates centrally -->
   </body>
+  <!-- Add this toast container after <body> tag -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div
+      id="cartToast"
+      class="toast"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
+      <div class="toast-header bg-success text-white">
+        <strong class="me-auto">Success</strong>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="toast-body">Product successfully added to cart!</div>
+    </div>
+    <div
+      id="successToast"
+      class="toast"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
+      <div class="toast-header bg-success text-white">
+        <strong class="me-auto">Payment Successful</strong>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="toast-body">
+        Thank you for your purchase! Your order has been confirmed.
+      </div>
+    </div>
+  </div>
 </html>
