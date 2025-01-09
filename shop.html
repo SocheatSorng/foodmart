@@ -406,7 +406,7 @@
         <div class="row g-5">
           <aside class="col-md-2">
             <div class="sidebar">
-              <!-- <div class="widget-menu">
+              <div class="widget-menu">
                 <div class="widget-search-bar">
                   <form
                     role="search"
@@ -429,7 +429,7 @@
                     </button>
                   </form>
                 </div>
-              </div> -->
+              </div>
               <div class="widget-product-categories pt-5">
                 <h5 class="widget-title">Categories</h5>
                 <ul
@@ -619,24 +619,12 @@
       document.addEventListener("DOMContentLoaded", async () => {
         const productGrid = document.getElementById("product-grid");
         const productCount = document.querySelector(".showing-product p");
-        let allProducts = []; // Store all products for filtering
 
         // Initialize toast at the start
         const toastElement = document.getElementById("cartToast");
         const toast = new bootstrap.Toast(toastElement, {
           delay: 3000,
         });
-
-        // Function to filter products by search query
-        function filterProductsBySearch(products, query) {
-          query = query.toLowerCase().trim();
-          return products.filter(
-            (product) =>
-              product.title.toLowerCase().includes(query) ||
-              product.description.toLowerCase().includes(query) ||
-              product.category.toLowerCase().includes(query)
-          );
-        }
 
         // Show loading skeleton
         showLoadingSkeleton(productGrid);
@@ -647,9 +635,6 @@
             fetchProducts(),
             fetchCategories(),
           ]);
-
-          // Store all products globally
-          allProducts = products;
 
           // Update product count
           productCount.textContent = `Showing 1–${products.length} of ${products.length} results`;
@@ -667,14 +652,6 @@
           const renderProducts = (products) => {
             // Hide loading skeleton
             hideLoadingSkeleton(productGrid);
-
-            if (products.length === 0) {
-              productGrid.innerHTML =
-                '<div class="col-12 text-center py-5">No products found matching your search.</div>';
-              return;
-            }
-
-            productCount.textContent = `Showing 1–${products.length} of ${products.length} results`;
 
             productGrid.innerHTML = products
               .map(
@@ -735,37 +712,6 @@
 
           // Initial render
           renderProducts(products);
-
-          // Handle search forms submission
-          const searchForms = document.querySelectorAll('form[role="search"]');
-          searchForms.forEach((form) => {
-            form.addEventListener("submit", async (e) => {
-              e.preventDefault();
-              const searchInput = e.target.querySelector("input");
-              const searchQuery = searchInput.value;
-
-              // Show loading skeleton
-              showLoadingSkeleton(productGrid);
-
-              // Filter products
-              const searchResults = filterProductsBySearch(
-                allProducts,
-                searchQuery
-              );
-
-              // Render filtered products
-              renderProducts(searchResults);
-
-              // Close search offcanvas if open
-              const offcanvasSearch =
-                document.getElementById("offcanvasSearch");
-              const bsOffcanvas =
-                bootstrap.Offcanvas.getInstance(offcanvasSearch);
-              if (bsOffcanvas) {
-                bsOffcanvas.hide();
-              }
-            });
-          });
 
           // Category filter functionality with loading state
           categoryList.addEventListener("click", async (e) => {
@@ -1259,21 +1205,6 @@
 
           // ... rest of existing initProductActions code ...
         }
-      });
-    </script>
-    <script>
-      document.addEventListener("DOMContentLoaded", async () => {
-        const cartManager = window.cartManager || new CartManager();
-
-        // Update all badges when cart changes
-        document.addEventListener("cartUpdated", () => {
-          cartManager.updateCartCount();
-        });
-
-        // Update badges initially
-        cartManager.updateCartCount();
-
-        // ...rest of your existing code...
       });
     </script>
 

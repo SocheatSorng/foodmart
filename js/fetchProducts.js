@@ -1,127 +1,124 @@
-const CORS_PROXY = "https://api.allorigins.win/raw?url=";
-const API_URL = "https://fakestoreapi.com/products";
-
-// Function to retry fetch with different methods
-async function fetchWithFallback(url) {
-  const methods = [
-    // Try direct fetch first
-    () =>
-      fetch(url, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }),
-    // Try CORS proxy
-    () => fetch(`${CORS_PROXY}${encodeURIComponent(url)}`),
-    // Try another CORS proxy
-    () => fetch(`https://cors-anywhere.herokuapp.com/${url}`),
-    // Try with no-cors mode
-    () => fetch(url, { mode: "no-cors" }),
-  ];
-
-  for (const method of methods) {
-    try {
-      const response = await method();
-      if (response.ok) {
-        return await response.json();
-      }
-    } catch (error) {
-      console.warn("Fetch attempt failed, trying next method:", error);
-    }
-  }
-
-  // If all fetch attempts fail, return fallback data
-  console.warn("All fetch attempts failed, using fallback data");
-  return getFallbackData();
-}
-
-function getFallbackData() {
-  return {
-    products: [
-      {
-        id: 1,
-        title: "Organic Mixed Vegetables Pack",
-        price: 12.99,
-        description: "Fresh assorted organic vegetables",
-        category: "vegetables",
-        image: "images/products/vegetables-1.jpg",
-        rating: { rate: 4.5, count: 89 },
-      },
-      {
-        id: 2,
-        title: "Fresh Fruit Basket",
-        price: 24.99,
-        description: "Seasonal fresh fruits selection",
-        category: "fruits",
-        image: "images/products/fruits-1.jpg",
-        rating: { rate: 4.8, count: 112 },
-      },
-      {
-        id: 3,
-        title: "Organic Milk",
-        price: 4.99,
-        description: "Fresh organic whole milk",
-        category: "dairy",
-        image: "images/products/dairy-1.jpg",
-        rating: { rate: 4.3, count: 78 },
-      },
-      {
-        id: 4,
-        title: "Whole Grain Bread",
-        price: 3.99,
-        description: "Freshly baked whole grain bread",
-        category: "bakery",
-        image: "images/products/bakery-1.jpg",
-        rating: { rate: 4.6, count: 145 },
-      },
-      {
-        id: 5,
-        title: "Free Range Eggs",
-        price: 5.99,
-        description: "Farm fresh free-range eggs",
-        category: "dairy",
-        image: "images/products/dairy-2.jpg",
-        rating: { rate: 4.7, count: 68 },
-      },
-    ],
-    categories: ["vegetables", "fruits", "dairy", "bakery", "beverages"],
-  };
-}
+const BASE_URL = "https://fakestoreapi.com";
 
 async function fetchProducts() {
   try {
-    const data = await fetchWithFallback(API_URL);
-    return Array.isArray(data) ? data : getFallbackData().products;
+    // First try to get data from localStorage
+    const cachedData = localStorage.getItem("cachedProducts");
+    if (cachedData) {
+      return JSON.parse(cachedData);
+    }
+
+    // If no cached data, fetch from API
+    const response = await fetch(`${BASE_URL}/products`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      mode: "cors", // This is important for CORS
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const products = await response.json();
+
+    // Cache the data in localStorage
+    localStorage.setItem("cachedProducts", JSON.stringify(products));
+
+    return products;
   } catch (error) {
     console.error("Error fetching products:", error);
-    return getFallbackData().products;
+
+    // Fallback to cached data if available
+    const cachedData = localStorage.getItem("cachedProducts");
+    if (cachedData) {
+      return JSON.parse(cachedData);
+    }
+
+    // If all else fails, return empty array
+    return [];
   }
 }
 
 async function fetchCategories() {
   try {
-    const products = await fetchProducts();
-    const categories = [
-      ...new Set(products.map((product) => product.category)),
-    ];
-    return categories.length > 0 ? categories : getFallbackData().categories;
+    // First try to get data from localStorage
+    const cachedData = localStorage.getItem("cachedCategories");
+    if (cachedData) {
+      return JSON.parse(cachedData);
+    }
+
+    const response = await fetch(`${BASE_URL}/products/categories`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const categories = await response.json();
+
+    // Cache the data
+    localStorage.setItem("cachedCategories", JSON.stringify(categories));
+
+    return categories;
   } catch (error) {
     console.error("Error fetching categories:", error);
-    return getFallbackData().categories;
+
+    // Fallback to cached data
+    const cachedData = localStorage.getItem("cachedCategories");
+    if (cachedData) {
+      return JSON.parse(cachedData);
+    }
+
+    return [];
   }
 }
 
 async function fetchProductsByCategory(category) {
   try {
-    const products = await fetchProducts();
-    return products.filter((product) => product.category === category);
+    // Try cache first
+    const cachedData = localStorage.getItem(`category_${category}`);
+    if (cachedData) {
+      return JSON.parse(cachedData);
+    }
+
+    const response = await fetch(`${BASE_URL}/products/category/${category}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const products = await response.json();
+
+    // Cache the category data
+    localStorage.setItem(`category_${category}`, JSON.stringify(products));
+
+    return products;
   } catch (error) {
     console.error("Error fetching products by category:", error);
-    return getFallbackData().products.filter(
-      (product) => product.category === category
-    );
+
+    // Fallback to cached data
+    const cachedData = localStorage.getItem(`category_${category}`);
+    if (cachedData) {
+      return JSON.parse(cachedData);
+    }
+
+    return [];
   }
 }
 
