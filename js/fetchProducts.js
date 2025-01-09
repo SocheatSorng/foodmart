@@ -1,4 +1,4 @@
-const BASE_URL = "https://fakestoreapi.com";
+const BASE_URL = "https://fakestoreapi.com/products";
 
 async function fetchProducts() {
   try {
@@ -9,7 +9,7 @@ async function fetchProducts() {
     }
 
     // If no cached data, fetch from API
-    const response = await fetch(`${BASE_URL}/products`, {
+    const response = await fetch(BASE_URL, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -50,14 +50,17 @@ async function fetchCategories() {
       return JSON.parse(cachedData);
     }
 
-    const response = await fetch(`${BASE_URL}/products/categories`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      mode: "cors",
-    });
+    const response = await fetch(
+      `https://fakestoreapi.com/products/categories`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+      }
+    );
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -90,14 +93,17 @@ async function fetchProductsByCategory(category) {
       return JSON.parse(cachedData);
     }
 
-    const response = await fetch(`${BASE_URL}/products/category/${category}`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      mode: "cors",
-    });
+    const response = await fetch(
+      `https://fakestoreapi.com/products/category/${category}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+      }
+    );
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
